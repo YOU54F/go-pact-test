@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  test:
     working_directory: ~/repo
     docker:
       - image: cimg/go:1.15.10
@@ -9,10 +9,18 @@ jobs:
       - run:
           name: Install standalone
           command: curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | bash
-          # command: curl https://rebrand.ly/getpact -Lso - | bash -s -- install-cli standalone
       - run:
           name: set path to pact executables
           command: echo 'export PATH=${PWD}/pact/bin:${PATH}' >> $BASH_ENV
       - run:
           name: Run tests
           command: cd go-1 && go test main/consumer_test.go
+  make_test:
+    working_directory: ~/repo
+    docker:
+      - image: cimg/go:1.15.10
+    steps:
+      - checkout
+      - run:
+          name: go_test
+          command: make go_test
