@@ -6,22 +6,10 @@ jobs:
       - image: cimg/go:1.15.10
     steps:
       - checkout
-      # - restore_cache:
-      #     keys:
-      #       - go-mod-v4-{{ checksum "go.sum" }}
-      - run:
-          name: Install Dependencies
-          command: cd go-1 && go get ./...
-      # - save_cache:
-      #     key: go-mod-v4-{{ checksum "go.sum" }}
-      #     paths:
-      #       - "/go/pkg/mod"
       - run:
           name: Install standalone
-          command: curl https://rebrand.ly/getpact -Lso - | bash -s -- install-cli standalone
-      - run:
-          name: set path to pact executables
-          command: ls pact
+          command: curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | bash
+          # command: curl https://rebrand.ly/getpact -Lso - | bash -s -- install-cli standalone
       - run:
           name: set path to pact executables
           command: echo 'export PATH=${PWD}/pact/bin:${PATH}' >> $BASH_ENV
