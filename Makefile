@@ -8,7 +8,7 @@ go_test_v1: pact_deps
 	cd go-1 && go test main/consumer_test.go
 
 go_test: pact_deps
-	export PATH=/opt/pact/bin:${PATH} cd go-1 && go test main/consumer_test.go
+	export PATH=/opt/pact/bin:${PATH} && cd go-1 && go test main/consumer_test.go
 
 pact_deps:
 	echo "installing pact cli deps"
