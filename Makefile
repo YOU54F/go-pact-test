@@ -14,4 +14,4 @@ pact_deps:
 	echo "installing pact cli deps"
 	curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | bash
 	@sudo cp -R pact /opt/pact
-	echo 'export PATH=${PWD}/pact/bin:${PATH}' >> ${BASH_ENV}
+	export PATH=${PWD}/pact/bin:${PATH}'
