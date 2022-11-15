@@ -17,5 +17,14 @@ jobs:
       #     paths:
       #       - "/go/pkg/mod"
       - run:
+          name: Install standalone
+          command: curl https://rebrand.ly/getpact -Lso - | sh -s -- install-cli standalone
+      - run:
+          name: set path to pact executables
+          command: ls pact
+      - run:
+          name: set path to pact executables
+          command: export PATH="${PWD}/pact/bin:${PATH}"
+      - run:
           name: Run tests
           command: cd go-1 && go test main/consumer_test.go
